@@ -1,6 +1,6 @@
 {
   "name": "dagmath",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Sriram Panyam",
   "description": "A directional math formula parser and evaluator",
   "homepage": "https://github.com/panyam/dagmath#readme",
