@@ -1,0 +1,95 @@
+{
+  "name": "dagmath",
+  "version": "0.0.1",
+  "author": "Sriram Panyam",
+  "description": "A directional math formula parser and evaluator",
+  "homepage": "https://github.com/panyam/dagmath#readme",
+  "license": "ISC",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "lib/cjs/index.d.ts",
+  "files": [
+    "lib/",
+    "styles/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/panyam/dagmath.git"
+  },
+  "keywords": [
+    "math",
+    "formula parser",
+    "formula evaluator"
+  ],
+  "bugs": {
+    "url": "https://github.com/panyam/dagmath/issues"
+  },
+  "dependencies": {
+    "@panyam/tsutils": "*",
+    "galore": "*"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/plugin-proposal-object-rest-spread": "^7.17.3",
+    "@babel/preset-flow": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/ace": "^0.0.48",
+    "@types/jest": "^27.4.1",
+    "@types/request": "^2.48.8",
+    "@typescript-eslint/eslint-plugin": "^5.21.0",
+    "@typescript-eslint/parser": "^5.21.0",
+    "autoprefixer": "^10.4.5",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^27.1.4",
+    "babel-loader": "^8.2.5",
+    "babel-preset-env": "^1.7.0",
+    "browserify": "17.0.0",
+    "codecov": "^3.8.3",
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "highlight.js": "11.5.1",
+    "jest": "^27.1.4",
+    "jest-each": "^28.0.1",
+    "jest-mock": "^28.0.1",
+    "jsdom": "^19.0.0",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^9.1.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.6.2",
+    "ts-jest": "^27.1.4",
+    "typedoc": "^0.22.15",
+    "typescript": "^4.6.3",
+    "typescript-tslint-plugin": "^1.0.1",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2"
+  },
+  "pre-commit": [
+    "precommit-msg",
+    "clean",
+    "build",
+    "lintfix",
+    "test"
+  ],
+  "scripts": {
+    "clean": "rm -Rf lib && jest --clearCache && rm -rf static/lib",
+    "builddocs": "npx typedoc",
+    "buildbase": "npm run clean && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
+    "buildumd": "npm run builddocs && npm run buildbase && webpack --mode=development",
+    "build": "npm run builddocs && npm run buildbase",
+    "test": "jest --coverage --runInBand",
+    "lint": "eslint './src' --quiet --ext .ts --resolve-plugins-relative-to .",
+    "lintfix": "eslint 'src/**/*.ts' --quiet --fix --resolve-plugins-relative-to .",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "precommit-msg": "echo 'Pre-commit checks...' && exit 0",
+    "prepare": "npm run build",
+    "prepublishOnly": "echo prepublishOnly...",
+    "preversion": "npm run build && npm run lintfix",
+    "version": "git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "directories": {
+    "lib": "lib"
+  }
+}
