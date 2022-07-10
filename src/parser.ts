@@ -192,8 +192,10 @@ export class Parser {
   }
 
   opinfos = new Map<string, Operator>();
-  setOP(op: Operator): this {
-    this.opinfos.set(op.op, op);
+  setOP(...ops: Operator[]): this {
+    for (const op of ops) {
+      this.opinfos.set(op.op, op);
+    }
     return this;
   }
 
@@ -268,3 +270,30 @@ export class Parser {
     return parse();
   }
 }
+
+export const JSOperators = [
+  new Operator("(", 1000),
+  new Operator(".", 990),
+  new Operator("[", 990),
+  new Operator("!", -1, -1, 970), // Logical NOT
+  new Operator("**", 960, Operator.RIGHT), // Exponentiation
+  new Operator("*", 950), // Multiplication
+  new Operator("/", 950), // Division
+  new Operator("+", 940), // Addition
+  new Operator("-", 940), // Subtraction
+  new Operator("<<", 930), // Addition
+  new Operator(">>", 930), // Subtraction
+  new Operator(">>>", 930), // Unsigned right shift
+  new Operator("<", 920),
+  new Operator("<=", 920),
+  new Operator(">", 920),
+  new Operator(">=", 920),
+  new Operator("in", 920),
+  new Operator("==", 910),
+  new Operator("!=", 910),
+  new Operator("&", 900),
+  new Operator("^", 890),
+  new Operator("|", 880),
+  new Operator("&&", 870),
+  new Operator("||", 860),
+];
