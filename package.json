@@ -26,7 +26,8 @@
   },
   "dependencies": {
     "@panyam/tsutils": "*",
-    "galore": "*"
+    "galore": "*",
+    "tlex": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
