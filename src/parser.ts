@@ -59,9 +59,7 @@ const [parser, itemGraph] = G.newParser(
         return token;
       },
       toNumber: (token: TLEX.Token, tape: TLEX.Tape, owner: any) => {
-        const num = token.value.indexOf(".") >= 0 ?
-                    parseFloat(token.value) :
-                    parseInt(token.value);
+        const num = token.value.indexOf(".") >= 0 ? parseFloat(token.value) : parseInt(token.value);
         token.value = owner.dag.newNum(num);
         return token;
       },
